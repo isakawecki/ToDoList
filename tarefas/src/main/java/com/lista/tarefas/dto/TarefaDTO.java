@@ -14,8 +14,10 @@ public class TarefaDTO {
     private LocalDate date;
     private Status status;
 
+    //Construtor vazio
     public TarefaDTO() {}
 
+    // Construtor que converte uma entidade Tarefa para um DTO
     public TarefaDTO(Tarefa entity) {
         id = entity.getId();
         idUsuario = entity.getUsuario().getId();
@@ -26,6 +28,7 @@ public class TarefaDTO {
         status = entity.getStatus();
     }
 
+     // Construtor com todos os campos
     public TarefaDTO(Long id, Long idUsuario, String descricaoTarefa, String nomeSetor, Prioridade prioridade,
                      LocalDate date, Status status) {
         this.id = id;
@@ -37,6 +40,7 @@ public class TarefaDTO {
         this.status = status;
     }
 
+    // Métodos getters e setters para acessar e modificar os campos
     public Long getId() {
         return id;
     }

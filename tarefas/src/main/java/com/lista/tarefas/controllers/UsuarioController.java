@@ -16,11 +16,13 @@ public class UsuarioController {
 	
 	@Autowired
 	UsuarioService service;
-	
+
+	    // Cria um novo usuário
 	@PostMapping(value = "/criar")
 	public ResponseEntity<UsuarioDTO> insert(@RequestBody UsuarioDTO dto){
+		   // Chama o serviço para inserir o usuário e retorna o usuário criado
 		dto = service.inserir(dto);
-		return ResponseEntity.ok(dto);
+		return ResponseEntity.ok(dto); // Retorna o usuário com status 200 (OK)
 	}
 	
 

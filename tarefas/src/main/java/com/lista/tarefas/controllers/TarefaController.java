@@ -16,16 +16,18 @@ import com.lista.tarefas.services.TarefaService;
 @RestController
 @RequestMapping("/tarefas")
 public class TarefaController {
-	
+
+	 //Injeta o serviço TarefaService
 	@Autowired
 	TarefaService service;
 	
-
+	// Retorna todas as tarefas
 	@GetMapping
 	public List<TarefaDTO> findAll(){
 		return service.findAll();
 		
 	}
+	//Cria uma nova tarefa
 	@PostMapping("/criar")
 	public ResponseEntity<TarefaDTO> insert(@RequestBody TarefaDTO dto){
 		dto = service.inserir(dto);

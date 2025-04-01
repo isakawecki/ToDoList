@@ -22,35 +22,42 @@ import jakarta.transaction.Transactional;
 
 @Service 
 public class TarefaService {
+	
+	 // Repositório para interagir com as tarefas no banco de dados
 	@Autowired
 	TarefaRepository tarefaRepository;
-	
+
+	// Repositório para interagir com os usuários
 	@Autowired 
 	UsuarioRepository usuarioRepository;
-	
+
+	 // Método para buscar todas as tarefas
 	public List<TarefaDTO> findAll(){
-		List<Tarefa> lista = tarefaRepository.findAll();
-				return lista.stream().map( x -> new TarefaDTO(x)).toList();
+		List<Tarefa> lista = tarefaRepository.findAll();  // Busca todas as tarefas no banco
+				return lista.stream().map( x -> new TarefaDTO(x)).toList(); // Converte as tarefas em DTOs e retorna
 
 
 	}
+
+	
+    // Método para buscar tarefas com paginação
 	
 	public Page<TarefaDTO> findpagina(Pageable pagina){
 		Page<Tarefa> busca = tarefaRepository.findAll(pagina);
 		return busca.map( x -> new TarefaDTO(x));
 
 }
-	
+	  // Método para inserir uma nova tarefa
 	@Transactional
 	public TarefaDTO inserir(TarefaDTO dto) {
 		Tarefa tarefa = new Tarefa();
-		tarefa.setDate(LocalDate.now());
-		tarefa.setStatus(Status.A_FAZER);
+		tarefa.setDate(LocalDate.now()); // Define a data atual como a data da tarefa
+		tarefa.setStatus(Status.A_FAZER); // Define o status inicial como "A_FAZER"
 		tarefa.setDescricaoTarefa(dto.getDescricaoTarefa());
 		
-		tarefa.setPrioridade(Prioridade.BAIXA);
+		tarefa.setPrioridade(Prioridade.BAIXA);  // Define a prioridade inicial como BAIXA
 	
-		
+		 // Busca o usuário associado à tarefa pelo ID
 		Usuario user = usuarioRepository.getReferenceById(dto.getIdUsuario());
 		
 		tarefa.setUsuario(user);

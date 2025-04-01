@@ -14,21 +14,21 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "tb_usuario")
 public class Usuario {
-
+// Campos representando os dados do usuário
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nome;
 	private String email;
 	
-	
+	 //Indica um relacionamento "um-para-muitos" com a classe Tarefa.
 	@OneToMany(mappedBy = "usuario")
 	private List<Tarefa> tarefas = new ArrayList<>();
 	
 	public Usuario() {
 		
 	}
-	
+	    // Métodos getters e setters para acessar e modificar os valores dos campos
 	public Usuario(Long id, String nome, String email) {
 		this.id = id;
 		this.nome = nome;

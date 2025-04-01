@@ -7,12 +7,13 @@ public class UsuarioDTO{
 	private String nome; 
 	private String email;
 	
-	
+	//Construtor vazio
 	public UsuarioDTO () {
 		
 	
 	}
-	
+
+	  // Construtor que converte uma entidade Tarefa para um DTO
 	public UsuarioDTO(Usuario entity) {
 		id = entity.getId();
 		nome = entity.getNome();
@@ -22,7 +23,8 @@ public class UsuarioDTO{
 		
 	}
 	
-
+	
+    // Construtor com todos os campos
 	public UsuarioDTO(Long id, String nome, String email, String telefone) {
 		this.id = id;
 		this.nome = nome;
@@ -31,7 +33,7 @@ public class UsuarioDTO{
 	
 	}
 
-
+	  // Métodos getters e setters para acessar e modificar os campos
 	public Long getId() {
 		return id;
 	}

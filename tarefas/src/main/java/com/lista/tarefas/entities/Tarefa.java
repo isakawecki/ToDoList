@@ -10,7 +10,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-
+// Campos representando os dados de uma tarefa
 @Entity
 @Table(name = "tb_tarefa")
 public class Tarefa {
@@ -23,15 +23,19 @@ public class Tarefa {
 	private Prioridade prioridade;
 	private LocalDate date;
 	private Status status;
-	
+
+// indica que essa classe tem um relacionamento "muitos-para-um" com a classe Usuario.
 	@ManyToOne
+
+ // define a coluna de junção no banco de dados, que é a chave estrangeira para a tabela de Usuários.
 	@JoinColumn(name = "usuario_id")
 	private Usuario usuario;
 
+	//Construtor vazio (Necessário para o JPA)
 	public Tarefa() {
 	
 	}
-	
+	  // Construtor com parâmetros para criar um objeto Tarefa diretamente
 	public Tarefa(Long id, Long idUsuario, String descricaoTarefa, String nomeSetor, Prioridade prioridade,
 			LocalDate date, Status status) {
 	
@@ -44,6 +48,7 @@ public class Tarefa {
 		this.status = status;
 	}
 
+	    // Métodos getters e setters para acessar e modificar os valores dos campos
 
 	public Long getId() {
 		return id;
